@@ -250,7 +250,7 @@ function IntakeForm({ onComplete }) {
       <span style={S.label}>Your name (optional)</span>
       <input style={S.input} placeholder="e.g. Vineeta" value={cfg.studentName} onChange={e => set("studentName", e.target.value)} />
       <span style={S.label}>Journey start date</span>
-      <input type="date" style={S.input} value={cfg.startDate} onChange={e => set("startDate", e.target.value)} />
+      <input type="date" style={S.input} min="2026-01-01" value={cfg.startDate} onChange={e => set("startDate", e.target.value)} />
       <div style={{ fontSize:11, color:"#9a7a5a", marginBottom:16, lineHeight:1.6 }}>Defaults to today. Can be a future date if classes haven't started, or a past date if you began earlier. The app auto-tracks which month you're on.</div>
       <button style={S.btn} onClick={() => setStep(1)}>Next →</button>
     </div>,
