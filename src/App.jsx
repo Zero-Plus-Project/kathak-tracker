@@ -82,9 +82,14 @@ function generateTatkaarLevels(cfg) {
 
 // ─── Default config ───────────────────────────────────────────────────────────
 
+function getTodayISO() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+
 const DEFAULT_CONFIG = {
   studentName: "",
-  startDate: "",
+  startDate: getTodayISO(),
   numMonths: 8,
   startBpm: 50,
   endBpm: 120,
@@ -137,6 +142,7 @@ function getMonthFromStartDate(startDateStr, numMonths) {
   if (!startDateStr) return 0;
   const start = new Date(startDateStr);
   const now = new Date();
+  if (start > now) return 0; // future start date = stay on Month 1
   const months = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth());
   return Math.min(Math.max(months, 0), numMonths - 1);
 }
@@ -243,8 +249,9 @@ function IntakeForm({ onComplete }) {
       <div style={S.sub} style={{ ...S.sub, textAlign: "center" }}>Let's set up your personal curriculum. It takes about 2 minutes and makes everything in the app specific to you.</div>
       <span style={S.label}>Your name (optional)</span>
       <input style={S.input} placeholder="e.g. Vineeta" value={cfg.studentName} onChange={e => set("studentName", e.target.value)} />
-      <span style={S.label}>When did you start learning?</span>
+      <span style={S.label}>Journey start date</span>
       <input type="date" style={S.input} value={cfg.startDate} onChange={e => set("startDate", e.target.value)} />
+      <div style={{ fontSize:11, color:"#9a7a5a", marginBottom:16, lineHeight:1.6 }}>Defaults to today. Can be a future date if classes haven't started, or a past date if you began earlier. The app auto-tracks which month you're on.</div>
       <button style={S.btn} onClick={() => setStep(1)}>Next →</button>
     </div>,
 
