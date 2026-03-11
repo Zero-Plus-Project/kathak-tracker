@@ -1,7 +1,24 @@
-"scripts": {
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist",
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview"
-},
+{
+  "name": "kathak-tracker",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "homepage": "https://Zero-Plus-Project.github.io/kathak-tracker",
+  "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "recharts": "^2.15.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.5.2",
+    "gh-pages": "^6.3.0",
+    "vite": "^7.3.1"
+  }
+}
